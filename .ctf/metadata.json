@@ -1,0 +1,14 @@
+{
+  "title": "OWASP SKF Blind Command Injection",
+  "description": "A Flask page that appends the submitted text to a file with os.system('echo ...'). The response is always the same WELCOME! message.",
+  "question": "Inject a shell command through the text field and prove it ran, without seeing its output in the page (blind OS command injection).",
+  "category": "WEB",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": [
+    "command-injection",
+    "blind-injection",
+    "remote-code-execution",
+    "injection"
+  ]
+}

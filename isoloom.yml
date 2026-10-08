@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP SKF Blind Command Injection (OWASP Security Knowledge Framework labs, by Glenn ten Cate, Riccardo ten Cate and the SKF contributors) as an Isoloom spec:
+# a Flask form that echoes the input into a file through a shell command and shows nothing back (blind command injection). The SKF lab folder python/CMD-Blind is
+# vendored unchanged in app/ and built by its own Dockerfile.
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: skf-cmd-blind
+
+networks:
+  lab: { cidr: 10.60.140.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 5000, name: web, http: true, publish: 5050 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: app
+
+checks:
+  - name: the lab answers
+    http: http://web:5000/
+    wait: 120
+  - name: text posted to / is accepted and answered WELCOME!
+    script: checks/post.sh
+
+message: |
+  OWASP SKF Blind Command Injection answers at http://localhost:{{ machines.web.services.0.publish }}/.
+  Your text goes into an echo shell command; the answer never changes.
