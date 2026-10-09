@@ -4,11 +4,5 @@
   "question": "Inject a shell command through the text field and prove it ran, without seeing its output in the page (blind OS command injection).",
   "category": "WEB",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": [
-    "command-injection",
-    "blind-injection",
-    "remote-code-execution",
-    "injection"
-  ]
+  "evidence_kind": "SECRET"
 }
