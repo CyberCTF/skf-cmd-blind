@@ -1,0 +1,43 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Get blind command execution on the server and read /ctf/flag.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-skf-cmd-blind}",
+      "hints": [
+        "The text you send is written to a file by a shell command, and the page never shows its output.",
+        "Look up blind OS command injection: how do you learn anything when the output is not returned?"
+      ],
+      "steps": [
+        {
+          "key": "param",
+          "title": "Find the input",
+          "prompt": "Which form field reaches the shell command? (field name)",
+          "check": {
+            "answer": [
+              "text"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "What class of vulnerability is this, given you never see the output?",
+          "check": {
+            "answer": [
+              "blind command injection",
+              "blind os command injection",
+              "command injection",
+              "os command injection"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
